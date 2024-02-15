@@ -1,0 +1,31 @@
+def imprimir_tabla(calificaciones):
+
+    print("Alumno\t\tMateria1\tMateria2\tMateria3\tMateria4\tMateria5\tMateria6")
+    print("-" * 70)
+
+    for i, alumno in enumerate(calificaciones, 1):
+        print(f"Alumno {i}:\t", end="")
+        for materia in alumno:
+            print(f"{materia}\t\t", end="")
+        print()
+
+def buscar_calificacion(calificaciones, alumno, materia):
+    if alumno < 1 or alumno > len(calificaciones):
+        print("Número de alumno no válido.")
+        return
+    if materia < 1 or materia > len(calificaciones[0]):
+        print("Número de materia no válido.")
+        return
+    calificacion = calificaciones[alumno - 1][materia - 1]
+    print(f"La calificación del alumno {alumno} en la materia {materia} es: {calificacion}")
+
+
+import random
+calificaciones = [[random.randint(0, 100) for _ in range(6)] for _ in range(100)]
+
+print("Tabla de calificaciones:")
+imprimir_tabla(calificaciones)
+
+num_alumno = int(input("\nIngrese el número de alumno a buscar (1-100): "))
+num_materia = int(input("Ingrese el número de materia a buscar (1-6): "))
+buscar_calificacion(calificaciones, num_alumno, num_materia)
